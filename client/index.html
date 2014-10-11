@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="placesApp">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1">
+		<title>Places</title>
+		<link rel="stylesheet" href="places.css" />
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300" />
+		<link rel="stylesheet" href="lib/leaflet-0.7.3/leaflet.css" />
+		<link rel="stylesheet" href="lib/font-awesome-4.2.0/css/font-awesome.css" />
+	</head>
+	<body>
+		<header class="padded shadow-i bg-dark">
+			<div id="logo" class="icon bg-dark-i pull-left">
+				<a ui-sref="search">P</a>
+			</div>
+			<div id="profile" class="icon bg-dark-i pull-right">
+				<a ui-sref="auth">
+					<i class="fa fa-user"></i>
+				</a>
+			</div>
+			<div id="search" class="pull-center">
+				<input class="full-width" type="search" placeholder="search" />
+			</div>
+		</header>
+		<section ui-view class="bg-light"></section>
+	</body>
+
+	<script src="lib/lodash-2.4.1/lodash.js"></script>
+	<script src="lib/leaflet-0.7.3/leaflet.js"></script>
+
+	<script src="lib/angular-1.3.0/angular.js"></script>
+	<script src="lib/angular-1.3.0/angular-touch.js"></script>
+	<script src="lib/angular-translate-2.2.0/angular-translate.js"></script>
+	<script src="lib/angular-ui-router-0.2.11/angular-ui-router.js"></script>
+	<script src="lib/restangular-1.4.0/restangular.js"></script>
+	
+	<script src="components/auth/auth.js"></script>
+	<script src="components/auth/auth-service.js"></script>
+	<script src="components/auth/loginButton/loginButton-directive.js"></script>
+	<script src="components/translate/translate.js"></script>
+	<script src="components/translate/translate-service.js"></script>
+	<script src="components/translate/languageSelect/languageSelect-directive.js"></script>
+
+	<script src="places.js"></script>
+	<script src="config.js"></script>
+	
+	<script src="views/auth/auth-controller.js"></script>
+	<script src="views/search/search-controller.js"></script>
+	<script src="views/location/view/view-controller.js"></script>
+	<script src="views/location/edit/edit-controller.js"></script>
+
+</html>

@@ -1,0 +1,26 @@
+<!-- <form ng-submit="search()">
+	<input type="seach" placeholder="Search by place name" ng-model="searchText" />
+</form> -->
+<div id="search-map" class="map"></div>
+<ul class="scroll padded-2x">
+
+	<!-- locations list -->	
+	<li class="card" ng-repeat="location in locations">
+		<a class="title" ui-sref="view({id:location._id})">
+			{{location.name}}
+			<span class="pull-right">
+				<i class="fa fa-star-o"></i>
+			</span>
+		</a>
+	</li>
+
+	<!-- add new place -->
+	<li class="card" ng-show="canAddLocation">
+		<a ui-sref="edit({id:'new'})">Don't see the place you're looking for? Add it!</a>
+	</li>
+</ul>
+
+<!-- if no locations found -->
+<div ng-hide="locations.length">
+	No places found!
+</div>

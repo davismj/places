@@ -1,0 +1,40 @@
+<style>
+	.error {
+		color: red;
+	}
+</style>
+<h1>Authentication</h1>
+<section ng-controller="loginCtrl">	
+	<h1>
+		Login
+		<span class="error" ng-bind="error"></span>
+	</h1>
+	<form ng-submit="login()">
+		<div>
+			<label>{{'EMAIL' | translate }}</label>
+			<input type="text" ng-model="email">
+		</div>
+		<div>
+			<label>{{'PASSWORD' | translate}}</label>
+			<input type="password" ng-model="password">
+		</div>
+		<input type="submit" value="{{'SUBMIT' | translate}}"/> 
+	</form>
+</section>
+<section ng-controller="registerCtrl">	
+	<h1>
+		Register
+		<span class="error" ng-bind="error"></span>
+	</h1>
+	<form ng-submit="register()">
+		<div>
+			<label>{{'EMAIL' | translate }}</label>
+			<input type="text" ng-model="email">
+		</div>
+		<div>
+			<label>{{'PASSWORD' | translate}}</label>
+			<input type="password" ng-model="password">
+		</div>
+		<input type="submit" value="{{'SUBMIT' | translate}}"/> 
+	</form>
+</section>
