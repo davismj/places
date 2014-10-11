@@ -1,0 +1,18 @@
+{
+	"name": "places-rest",
+	"version": "0.1.0",
+	"main": "server.js",
+	"dependencies": {
+		"express": "4.x.x",
+		"body-parser": "1.x.x",
+		"cookie-parser": "1.x.x",
+		"mongodb": "1.x.x",
+		"bcryptjs": "2.x.x",
+		"pg": "3.x.x",
+		"extend": "2.x.x",
+		"node-uuid": "1.x.x",
+		"lodash": "2.x.x",
+		"sequelize": "1.x.x",
+		"nodemailer": "1.x.x"
+	}
+}
