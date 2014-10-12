@@ -1,7 +1,4 @@
 <style scoped>
-	#row:first-of-type {
-		height: 58px;
-	}
 	#view-map {
 		width: 100%;
 		height: 100px;
@@ -35,7 +32,7 @@
 	</div>
 	<div class="col-1-3">
 		<div id="checkin" class="card" ng-show="auth.loggedIn">
-			<i class="fa fa-check-square-o" ng-hide="checkedin" ng-click="checkin()"></i>
+			<i class="fa fa-check-square-o" ng-hide="checkedin" ng-click="visit()"></i>
 			<i class="fa fa-check-square" ng-show="checkedin"></i>
 			{{checkedin ? 'CHECKEDIN' : 'CHECKIN' | translate}}
 		</div>
@@ -62,7 +59,7 @@
 			</span>
 		</h1>
 		<textarea class="spaced full-width" rows="3" ng-model="review.body"></textarea>
-		<button class="action" ng-click="leaveReview()">
+		<button class="action" ng-click="visit()">
 			<i class="fa fa-check"></i>
 			{{'LEAVE_REVIEW' | translate}}
 		</button>

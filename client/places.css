@@ -95,7 +95,8 @@ li + li {
 	width: 80%;
 }
 
-.padded {
+.padded,
+.card {
 	padding: 6px;
 }
 .padded-2x {
@@ -123,32 +124,29 @@ li + li {
 .scroll {
 	overflow-y: auto;
 }
-.shadow {
-	box-shadow: 1px 2px 1px rgba(0,0,0,0.15);
+.shadow,
+.card {
+	box-shadow: 1px 2px 1px rgba(0,0,0,0.3);
 }
 .shadow-i {
-	box-shadow: inset 1px -2px 1px rgba(0,0,0,0.15);
+	box-shadow: inset 1px -2px 1px rgba(0,0,0,0.3);
 }
 .bg-dark {
-	color: rgb(225, 180, 205);
-	background-color: rgb(16, 100, 16);
+	color: rgb(255, 255, 255);
+	background-color: rgb(0, 0, 0);
 }
-.bg-dark-i {
-	color: rgb(132, 202, 132);
-	background-color: rgb(100, 16, 64);
+.bg-dark-i,
+.card {
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 255);
 }
 .bg-light {
-	color: rgb(100, 16, 64);
-	background-color: rgb(132, 202, 132);
+	color: rgb(64, 64, 64);
+	background-color: rgb(192, 192, 192);
 }
-.bg-light-i,
-.card {
-	color: rgb(16, 100, 16);
-	background-color: rgb(225, 180, 205);
-}
-.card {
-	padding: 6px;
-	box-shadow: 1px 2px 1px rgba(0,0,0,0.15);
+.bg-light-i {
+	color: rgb(192, 192, 192);
+	background-color: rgb(64, 64, 64);
 }
 .card > .title {
 	padding: 0;
@@ -160,7 +158,8 @@ li + li {
 	display: block;
 	border: 0;
 	border-top: 1px solid;
-	padding: 6px 0 0 0;
+	padding: 4px 0 0 0;
+	margin: 2px 0 0 0;
 
 	font-size: inherit;
 	font-weight: inherit;
@@ -169,6 +168,9 @@ li + li {
 	font-family: inherit;
 	color: inherit;
 }
+.card > .action i {
+	margin: 0 4px;
+}
 
 .text-sm,
 body {
@@ -176,7 +178,7 @@ body {
 }
 .text-lg,
 .card > .title {
-	font-size: 20px;
+	font-size: 18px;
 }
 
 .map {
@@ -191,6 +193,24 @@ body {
 	top: 40%;
 	width: 100%;
 	bottom: 0;
+}
+
+.input-group {
+	display: block;
+}
+.input-group > .label {
+	padding-right: 8px;
+}
+
+.input-group input {
+	font-size: inherit;
+	font-weight: inherit;
+	font-family: inherit;
+	color: inherit;
+	background: rgba(255,255,255,0.6);
+	padding-top: 0;
+	border: 0;
+	margin-top: 0;
 }
 
 header {
@@ -225,4 +245,20 @@ body > section {
 }
 #search {
 	padding: 0 12px;
+}
+
+.fade-out {
+	position: relative;
+	white-space: nowrap;
+}
+
+.fade-out:after {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 50px;
+	content: "";
+	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,1) 100%);
 }

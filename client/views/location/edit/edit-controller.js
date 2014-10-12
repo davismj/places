@@ -8,7 +8,8 @@ angular.module('placesApp')
     	var Locations = Restangular.all(config.path + 'location');
 
     	// configure leaflet
-    	var	map = new L.map('edit-map', {
+    	var	map = 
+    		new L.map('edit-map', {
     			layers: [
 		    		new L.TileLayer(
 		    			config.layer, 
@@ -34,12 +35,15 @@ angular.module('placesApp')
 			name: '' 
 		};
 		$scope.submit = function() {
+
+			var loc = $scope.location;
+			if (!(loc.lat && loc.lon && loc.name))
+				return success();
+
 			Locations
-				.post($scope.location)
+				.post(loc)
 				.then(
-					function success() {
-						location.assign('#/search');
-					},
+					success,
 					function error(err) {
 						if (err.status == 403)
 							auth.logout()
@@ -48,6 +52,10 @@ angular.module('placesApp')
 								});
 					}
 				);
+
+			function success() {
+				location.assign('#/search');
+			}
 		};
 		$scope.cancel = function() {
 			location.assign('#/search');

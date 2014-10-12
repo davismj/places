@@ -11,8 +11,7 @@ angular.module('placesApp', ['auth', 'translate', 'ui.router', 'restangular'])
 		$stateProvider
 			.state('auth', {
 				url: '/login',
-				templateUrl: 'views/auth/auth.html',
-				controller: 'authCtrl'
+				templateUrl: 'views/auth/auth.html'
 			})
 		    .state('search', {
 		    	url: '/search',

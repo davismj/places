@@ -9,7 +9,6 @@
 		"mongodb": "1.x.x",
 		"bcryptjs": "2.x.x",
 		"pg": "3.x.x",
-		"extend": "2.x.x",
 		"node-uuid": "1.x.x",
 		"lodash": "2.x.x",
 		"sequelize": "1.x.x",

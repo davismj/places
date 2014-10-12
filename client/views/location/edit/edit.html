@@ -1,27 +1,19 @@
 <style>
-	label {
-	
-	}
-	label > input {
-		font-size: inherit!important;
-		font-weight: inherit!important;
-		color: inherit!important;
-		background: rgba(255,255,255,0.6);
-		border-radius:0!important;
-		border: 0!important;
-		margin-left: 6px!important;
-	}
 </style>
 
 <div id="edit-map" class="map"></div>
 <div class="row">
 	<form class="card" ng-submit="submit()">
-		<label>
-			<span class="pull-left">{{'NAME' | translate}}:</span>
-			<input class="full-width" type="text" ng-model="location.name" placeholder="Name" />
+		<label class="input-group">
+			<div class="pull-left label">{{'NAME' | translate}}:</div>
+			<div class="pull-center input">
+				<input class="full-width" type="text" ng-model="location.name" />
+			</div>
 		</label>
-		
-		<input class="action" type="submit" value="{{'SUBMIT' | translate}}"/>
+		<button class="action" type="submit">
+			<i class="fa fa-share"></i>
+			{{'SUBMIT' | translate}}
+		</button>
 		<!-- 	</div>
 			<div class="col-1-2">
 				<input class="action" type="button" ng-click="cancel()" value="{{'CANCEL' | translate}}"/>

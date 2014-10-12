@@ -4,11 +4,11 @@ angular.module('placesApp')
 		var locationUrl = '/{path}location/{id}'
 				.replace('{path}', config.path)
 				.replace('{id}', $stateParams.id);
-			
-		$scope.location = 
-			Restangular
-				.one(config.path + 'location', $stateParams.id)
-				.get().$object;
+		
+		var Location = Restangular.one(config.path + 'location', $stateParams.id);
+
+		$scope.location = window.loc = Location.get().$object;
+		$scope.location.reviews = Location.getList('visit').$object;
 
 		$scope.auth = auth;
 
@@ -17,10 +17,6 @@ angular.module('placesApp')
 
 		// checkins
 		$scope.checkedin = false;
-		$scope.checkin = function() {
-			$http.post(locationUrl + '/checkin');
-			$scope.checkedin = true;
-		};
 
 		// review
 		$scope.review = {
@@ -29,17 +25,15 @@ angular.module('placesApp')
 		};
 
 		$scope.rate = function(rating) {
-			if (rating == $scope.review.rating) 
-				return;
 			$scope.review.rating = rating;
-			$scope.leaveReview();
 		};
 
-		$scope.leaveReview = function() {
+		$scope.visit = function() {
 			$http.post(
-				locationUrl + '/rate', 
+				locationUrl + '/visit', 
 				JSON.stringify($scope.review)
 			);
+			$scope.checkedin = true;
 		}
 	});
 	// .directive('checkinButton', function () {

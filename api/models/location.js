@@ -6,13 +6,14 @@ var Point = require('../geojson').Point,
 function Location(json) {
 	json = json || {};
 	this.name = json.name;
-	this.loc = new Point(
-		json.lon || 0, 
-		json.lat || 0);
+	this.loc = new Point(json.lon, json.lat);
 }
 
-Location.prototype.computeRating = function() {
-
+Location.prototype.valid = function() {
+	return !!(
+		this.name
+		&& this.loc && this.loc.valid()
+	);
 }
 
 // ensure an index on the location collection
