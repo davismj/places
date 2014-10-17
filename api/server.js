@@ -5,6 +5,7 @@ var express = require('express'),
 	cookieParser = require('cookie-parser'),
 	config = require('./config'),
 	auth = require('./auth'),
+	awards = require('./badge'),
 	location = require('./location');
 
 router.get('/', function(req, res) {

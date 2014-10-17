@@ -30,8 +30,9 @@ router.post('/login', function(req, res) {
 	if (!req.body.email 
 		|| !req.body.password)
 		res.send(400);
+
 	User
-		.find({ where: { email: req.body.email }})
+		.find({ where: { email: req.body.email.toLowerCase() }})
 		.then(function (user) {
 			if (!user
 				|| !bcrypt.compareSync(req.body.password, user.password)
@@ -61,21 +62,21 @@ router.post('/logout', function(req, res) {
 		});
 });
 
+// TODO fix registration process, unique registrations, configurable url
+
 router.post('/register', function(req, res) {
 	if (!req.body.email 
 		|| !req.body.password)
 		res.send(400);
 	User
 		.create({
-			email: req.body.email,
+			email: req.body.email.toLowerCase(),
 			password: bcrypt.hashSync(req.body.password, salt) 
 		}) 
 		.complete(function(err, user) {
 			if (err) {
 				if (err.routine = '_bt_check_unique')
 					res.send(400, 'Email address in use');
-				else
-					res.send(500);
 			}
 			else {
 				user.hash = uuid.v4();

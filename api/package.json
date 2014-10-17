@@ -13,5 +13,9 @@
 		"lodash": "2.x.x",
 		"sequelize": "1.x.x",
 		"nodemailer": "1.x.x"
+	},
+	"devDependencies": {
+		"gulp": "3.x.x",
+		"gulp-sftp": "0.x.x"
 	}
 }
