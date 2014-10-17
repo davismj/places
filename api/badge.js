@@ -19,9 +19,7 @@ Events.subscribe('insert visit', function(visit) {
 						{ _id: visit.user },
 						{ $addToSet: { badges: BADGES['busy'] } }, 
 						{ upsert: true },
-						function complete() {
-							console.log('i did it bro');
-						}
+						function complete() {}
 					)
 				});
 			}
