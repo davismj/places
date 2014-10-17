@@ -3,6 +3,7 @@ var express = require('express'),
 	_ = require('lodash'),
 	mongo = require('./mongo'),
 	auth = require('./auth'),
+	Events = require('./event'),
 	Location = require('./models/location'),
 	Visit = require('./models/visit');
 
@@ -103,7 +104,8 @@ router.post('/:id/visit', function(req, res) {
 				{ location: id, user: user.id, timestamp: { $gt: new Date(Date.now() - (1000*60*60)) } },
 				visit,
 				{ upsert: true },
-				function complete(err, visit, status) {
+				function complete(err, count, status) {
+					Events.notify('insert visit', visit); // TODO check if new or existing
 					visits.mapReduce(
 
 						// map visits per user
@@ -134,11 +136,21 @@ router.post('/:id/visit', function(req, res) {
 							});
 						} 
 					);
+					visits.count({ user: user.id }, function(err, count) {
+						mongo.use('users', function(users) {
+							users.update(
+								{ _id: user.id },
+								{ $set: { visits: count } },
+								{ upsert: true },
+								function complete() {}
+							);
+						});
+					});
 				}
 			)
 		});
+		res.send(200);
 	});
-	res.send(200);
 });
 
 function isValidId(val) {

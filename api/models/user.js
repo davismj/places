@@ -8,43 +8,6 @@ var FLAGS = {
 	'add location': 2
 };
 
-var AWARDS = {
-	
-	'busy': {
-		id: 0,
-		description: 'At least 20 visits.',
-		condition: Events.subscribe('insert visit', 
-			function(visit, mongo) {
-				mongo.use('visits', function(visits) {
-					visits
-						.find({ user: visit.user })
-						.toArray(function(err, visits) {
-							if (visits.length >= 20)
-								this.award(m );
-						});
-				});
-			}
-		)
-	},
-
-	'tester': {
-	 	id: 0,
-		description: 'Contributed at least 5 visits to the first 200.',
-		condition: Events.subscribe('insert visit', 
-			function(visit, mongo) {
-				mongo.use('visits', function(visits) {
-					visits
-						.find({ user: visit.user })
-						.toArray(function(err, visits) {
-							if (visits.length >= 20)
-								this.award(m );
-						});
-				});
-			}
-		)
-	}
-};
-
 module.exports = 
 	postgres.define('users', {
 		id: { type: Sequelize.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
@@ -71,3 +34,4 @@ module.exports =
 		}
 	});
 
+// TODO mongo definition?

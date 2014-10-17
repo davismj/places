@@ -18,10 +18,14 @@ Visit.fields = {
 };
 
 // ensure an index on the location collection
-mongo.use('visits', function(reviews) {
-	reviews.ensureIndex(
+mongo.use('visits', function(visits) {
+	visits.ensureIndex(
 		{ user: 1, location: 1 }, 
 		// { unique: true },
+		function() {}
+	);
+	visits.ensureIndex(
+		{ user: 1 },
 		function() {}
 	);
 });
