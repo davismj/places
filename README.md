@@ -7,9 +7,9 @@ To change the paradigm of how corporations operate in Japan.
 - Fail Faster
 
 ## Milestones
-- [0.1.0 Collection](#010-Collection) (09-30-2014)
-- [0.2.0 Marketing](#020-Marketing) (10-15-2014)
-- [0.3.0 Flattery](#030-Flattery) (10-31-2014)
+- [0.1.0 Collection](#010-collection) (09-30-2014)
+- [0.2.0 Marketing](#020-marketing) (10-15-2014)
+- [0.3.0 Flattery](#030-flattery) (10-31-2014)
 - [Future Phases](#future-phases) (unassigned)
 
 ## 0.1.0 Collection
