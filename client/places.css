@@ -280,3 +280,18 @@ body > section {
 	border-top-left-radius: 12px;
 	padding: 0 8px;
 }
+
+.collapse {
+	position: relative;
+    -webkit-animation: collapse 0.5s;
+    animation: collapse 0.5s;
+}
+
+@-webkit-keyframes collapse {
+    0%   { opacity: 0%; top: 100px; }
+    100% { opacity: 100%; top: 0px; }
+}
+@keyframes collapse {
+    0%   { opacity: 0%; top: 100px; }
+    100% { opacity: 100%; top: 0px; }
+}

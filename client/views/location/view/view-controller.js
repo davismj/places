@@ -21,7 +21,8 @@ angular.module('placesApp')
 		// review
 		$scope.review = {
 			rating: null,
-			body: null
+			body: null,
+			editing: true
 		};
 
 		$scope.rate = function(rating) {
@@ -34,5 +35,6 @@ angular.module('placesApp')
 				JSON.stringify($scope.review)
 			);
 			$scope.checkedin = true;
+			$scope.review.editing = false;
 		}
 	});

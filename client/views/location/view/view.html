@@ -41,14 +41,10 @@
 <div class="row">
 	<img id="view-map" class="shadow" ng-src="http://www.mapquestapi.com/staticmap/v4/getmap?key={{key}}&size={{mapWidth}},100&zoom=14&center={{location.loc.coordinates[1]}},{{location.loc.coordinates[0]}}&scalebar=false&pois=mcenter,{{location.loc.coordinates[1]}},{{location.loc.coordinates[0]}}" />
 </div>
-<div class="row" ng-show="location.reviews.length > 0">
-	<div class="card" ng-repeat="review in location.reviews">
-		{{ review.body }}
-	</div>
-</div>
-<div class="row" ng-show="auth.loggedIn">
-	<div class="card">
-		<h1 class="title">
+<div class="row" ng-show="auth.loggedIn && (review.editing || review.body)">
+	<div class="card" ng-class="{ collapse: !review.editing && review.body }">
+		<span ng-hide="review.editing">{{ review.body }}</span>
+		<h1 ng-show="review.editing"class="title">
 			Your experience
 			<span class="pull-right">
 				<i class="fa" ng-click="rate(1)" ng-class="'fa-star' + (review.rating < 1 ? '-o' : '')"></i>
@@ -58,11 +54,15 @@
 				<i class="fa" ng-click="rate(5)" ng-class="'fa-star' + (review.rating < 5 ? '-o' : '')"></i>
 			</span>
 		</h1>
-		<textarea class="spaced full-width" rows="3" ng-model="review.body"></textarea>
-		<button class="action" ng-click="visit()">
+		<textarea class="spaced full-width" rows="3" ng-show="review.editing" ng-model="review.body"></textarea>
+		<button class="action" ng-show="review.editing" ng-click="visit()">
 			<i class="fa fa-check"></i>
 			{{'LEAVE_REVIEW' | translate}}
 		</button>
 	</div>
 </div>
-<!-- <button onclick="history.back()">Back</button> -->
+<div class="row" ng-repeat="review in location.reviews">
+	<div class="card">
+		{{ review.body }}
+	</div>
+</div>
