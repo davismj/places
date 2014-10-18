@@ -247,7 +247,7 @@ body > section {
 	transform: rotate(15deg);
 }
 #profile i {
-	vertical-align: 2px;
+	margin-top: 2px;
 }
 #search {
 	padding: 0 12px;

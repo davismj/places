@@ -1,23 +1,27 @@
-angular.module('placesApp', ['auth', 'translate', 'ui.router', 'restangular'])
+angular.module('placesApp', ['auth', 'search', 'translate', 'ui.router', 
+	'restangular'])
 
-	.config(['config', 'authProvider', '$stateProvider', '$urlRouterProvider', 
-		function(config, authProvider, $stateProvider, $urlRouterProvider) {
+	.config(['config', 'authProvider', 'searchProvider', '$stateProvider', 
+		'$urlRouterProvider', 
+		function(config, authProvider, searchProvider, $stateProvider, 
+			$urlRouterProvider) {
 
 		// auth
 		authProvider.apiUri = '/' + config.path + 'auth/';
+		searchProvider.apiUri = config.path + 'location'
 
 		// routing
-		$urlRouterProvider.otherwise('/search');
+		$urlRouterProvider.otherwise('/');
 		$stateProvider
+		    .state('search', {
+		    	url: '/',
+		        templateUrl: 'views/search/search.html',
+		        controller: 'searchCtrl' 
+		    })
 			.state('auth', {
 				url: '/login',
 				templateUrl: 'views/auth/auth.html'
 			})
-		    .state('search', {
-		    	url: '/search',
-		        templateUrl: 'views/search/search.html',
-		        controller: 'searchCtrl' 
-		    })
 		    .state('edit', {
 		    	url: '/place/:id/edit',
 		        templateUrl: 'views/location/edit/edit.html',
@@ -32,4 +36,8 @@ angular.module('placesApp', ['auth', 'translate', 'ui.router', 'restangular'])
 
 	.run(['auth', function($auth) {
 		return $auth.verify(); 
-	}]);
+	}])
+
+	.controller('mainCtrl', function($scope, search) {
+		$scope.search = search;
+	});

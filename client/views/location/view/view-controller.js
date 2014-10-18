@@ -7,7 +7,7 @@ angular.module('placesApp')
 		
 		var Location = Restangular.one(config.path + 'location', $stateParams.id);
 
-		$scope.location = window.loc = Location.get().$object;
+		$scope.location = Location.get().$object;
 		$scope.location.reviews = Location.getList('visit').$object;
 
 		$scope.auth = auth;
@@ -36,35 +36,3 @@ angular.module('placesApp')
 			$scope.checkedin = true;
 		}
 	});
-	// .directive('checkinButton', function () {
-	// 	return {
-	// 		templateUrl: 'views/location/view/checkinButton.html',
-	// 		controller: function($scope, $http, $stateParams, config) {
-	// 			var checkinUrl = '/{path}/location/{id}/checkin'
-	// 				.replace('{path}', config.path)
-	// 				.replace('{id}', $stateParams.id);
-	// 			$scope.checkedin = false;
-	// 			$scope.checkin = function() {
-	// 				$http.post(checkinUrl);
-	// 				$scope.checkedin = true;
-	// 			};
-	// 		}
-	// 	}
-	// })
-	// .directive('ratingMeter', function () {
-	// 	return {
-	// 		templateUrl: 'views/location/view/ratingMeter.html',
-	// 		controller: function($scope, $http, $stateParams, config) {
-	// 			var rateUrl = '/{path}location/{id}/rate'
-	// 				.replace('{path}', config.path)
-	// 				.replace('{id}', $stateParams.id);
-	// 			$scope.rating = 0;
-	// 			$scope.rate = function(rating) {
-	// 				if (rating == $scope.rating) 
-	// 					return;
-	// 				$scope.rating = rating;
-	// 				$http.post(rateUrl, rating.toString());
-	// 			};
-	// 		}
-	// 	}
-	// });

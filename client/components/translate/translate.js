@@ -28,4 +28,5 @@ angular.module('translate', ['pascalprecht.translate'])
 	    	JAPANESE: '日本語' });
 
 		$translateProvider.preferredLanguage('en');
-		$translateProvider.fallbackLanguage('en'); })
+		$translateProvider.fallbackLanguage('en'); 
+	});

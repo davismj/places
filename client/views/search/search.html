@@ -5,7 +5,7 @@
 <ul class="scroll padded-2x">
 
 	<!-- locations list -->	
-	<li class="card" ng-repeat="location in locations">
+	<li class="card" ng-repeat="location in search.results">
 		<a class="title" ui-sref="view({id:location._id})">
 			<span class="pull-right">
 				<span ng-hide="location.rating > 0">New!</span>
@@ -20,7 +20,7 @@
 	</li>
 
 	<!-- if no locations found -->
-	<li class="card" ng-hide="locations.length > 0">
+	<li class="card" ng-hide="search.results.length > 0">
 		<h1 class="title">
 			No places found!
 		</h1>

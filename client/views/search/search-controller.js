@@ -1,8 +1,11 @@
 angular.module('placesApp')
-    .controller('searchCtrl', function($scope, config, auth, Restangular) {
+    .controller('searchCtrl', function($scope, config, auth, search) {
 
-    	// initialize restangular
-    	var Locations = Restangular.all(config.path + 'location');
+    	$scope.search = search;
+
+    	Object.defineProperty($scope, 'canAddLocation', {
+			get: function() { return auth.can('add location') }
+		});
 
     	// initialize leaflet
     	var	map = new L.map('search-map', {
@@ -12,66 +15,56 @@ angular.module('placesApp')
 	    			config.layerOptions
     			)
     		]
+		}), 
+			markers = {};
+
+		map.on('locationfound', function (loc) {
+			search.query.lat = loc.latitude;
+			search.query.lon = loc.longitude;
+			search.search();
+		});
+		map.on('moveend', function() { 
+			var bounds = map.getBounds(),
+				center = bounds.getCenter(),
+				north = [bounds.getNorth(), center.lng],
+				zoom = map.getZoom();
+			search.query.dist = center.distanceTo(north);
+			search.mapView.zoom = zoom;
+			search.query.lat = center.lat;
+			search.query.lon = center.lng;
+			search.mapView.center = center;
+			search.search(); 
 		});
 
-		map.on('locationfound', locationFound);
-		map.locate({
-			setView: true,
-			maximumAge: 15000,
-			enableHighAccuracy: true
+		if (!search.query.lat || !search.query.lon)
+			map.locate({
+				setView: true,
+				maximumAge: 15000,
+				enableHighAccuracy: true
+			});
+		else
+			map.setView(
+				search.mapView.center,
+				search.mapView.zoom
+			);
+
+		$scope.$watch('search.results', function (results) {
+			var oldKeys = _.difference(
+				_.keys(markers), 
+				_.pluck(search.results, '_id')
+			);
+			oldKeys.forEach(function(key) {
+				map.removeLayer(markers[key]);
+				delete markers[key];
+			});
+			results.forEach(function(result) {
+				if (!(result._id in markers)) {
+					markers[result._id] = new L.Marker([
+						result.loc.coordinates[1],
+						result.loc.coordinates[0]
+					]);
+					markers[result._id].addTo(map);
+				}
+			});
 		});
-		map.on('moveend', function() { search(); });
-
-    	// scope properties
-    	$scope.searchText;
-		$scope.position = {
-			lat: null,
-			lon: null
-		};
-		$scope.locations = [];
-		$scope.search = search;
-		Object.defineProperty($scope, 'canAddLocation', {
-			get: function() { return auth.can('add location') }
-		});
-
-		function search(lat, lon) {
-			var mapBounds = map.getBounds(),
-				northEast = mapBounds.getNorthEast(),
-				southWest = mapBounds.getSouthWest(),
-				center = mapBounds.getCenter(),
-				dist = northEast.distanceTo(southWest) / 3.5,
-				query = {
-					lat: lat || center.lat,
-					lon: lon || center.lng,
-					dist: dist 
-				};
-
-			if ($scope.searchText)
-				query.search = $scope.searchText;
-
-			$scope.locations.forEach(removeMarker);
-			Locations
-				.getList(query)
-				.then(function(locations) {
-					locations.forEach(addMarker);
-					$scope.locations = locations; 
-				});
-		}
-
-		function addMarker(location) {
-			location.marker = new L.marker(
-				location.loc.coordinates.reverse());
-			location.marker.addTo(map);
-		}
-
-		function removeMarker(location) {
-			if (location.marker)
-				map.removeLayer(location.marker);
-		}
-
-		function locationFound(loc) {
-			$scope.position.lat = loc.latitude;
-			$scope.position.lon = loc.longitude;
-			search(loc.latitude, loc.longitude);
-		}
 	});
