@@ -7,9 +7,9 @@ To change the paradigm of how corporations operate in Japan.
 - Fail Faster
 
 ## Milestones
-- [0.1.0 Collection](#0.1.0-Collection) (09-30-2014)
-- [0.2.0 Marketing](#0.2.0-Marketing) (10-15-2014)
-- [0.3.0 Flattery](#0.3.0-Flattery) (10-31-2014)
+- [0.1.0 Collection](#010-Collection) (09-30-2014)
+- [0.2.0 Marketing](#020-Marketing) (10-15-2014)
+- [0.3.0 Flattery](#030-Flattery) (10-31-2014)
 - [Future Phases](#future-phases) (unassigned)
 
 ## 0.1.0 Collection
@@ -20,7 +20,7 @@ To change the paradigm of how corporations operate in Japan.
 - User should be able to check in to a location
 - User should be able to leave a review for a location
 
-## 0.2.0 Marketing (10-15-2014)
+## 0.2.0 Marketing
 - The app should be mobile friendly:
   - it should fit all controls within the view of an iphone 4
   - it should only take one try to interact with a control
@@ -30,11 +30,11 @@ To change the paradigm of how corporations operate in Japan.
 - The app should search locations by name slightly outside the current map view, should update on a map pan, and should adjust the zoom on locations found.
 - A user should register an account through an email validation.
 
-## 0.3.0 Flattery (10-31-2014)
+## 0.3.0 Flattery
 - A user should have a page with general activity including public information, stats, and badges.
 - A user should get some of visual feedback with every action they take, viz. experience points or badges.
 
-## Future Phase (unassigned)
+## Future Phases
 - A place should handle basic information such as a category (eg. coffee shop), many tags (eg. coffee, alcohol, lunch, wifi), hours of operation, a picture, and a map.
 - The app should use a translation API to convert reviews into the user’s language
 - Reviews could contain a breakdown of reviews by attribute (such as cleanliness or service).
