@@ -1,7 +1,8 @@
 ## Vision: 
-To change the paradigm of how corporations operate in Japan.
+To teach and enable people through employment to be faithful to God, to their families, and to their community (in that order).
 
 ## Mission:
+To become the primary source for consumers to find businesses and coprorations to find customers.
 
 ## Core Values
 - Fail Faster
