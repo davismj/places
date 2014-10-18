@@ -1,5 +1,5 @@
 ## Vision: 
-To teach and enable people through employment to be faithful to God, to their families, and to their community (in that order).
+To teach and enable people through employment to be faithful to God, to their families, and to their community.
 
 ## Mission:
 To become the primary source for consumers to find businesses and coprorations to find customers.
