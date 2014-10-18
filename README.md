@@ -1,5 +1,8 @@
-## Vision: To change the paradigm of how corporations operate in Japan.
+## Vision: 
+To change the paradigm of how corporations operate in Japan.
+
 ## Mission:
+
 ## Core Values
 - Fail Faster
 
