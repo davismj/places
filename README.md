@@ -7,12 +7,12 @@ To change the paradigm of how corporations operate in Japan.
 - Fail Faster
 
 ## Milestones
-- [0.1.0 Collection](#0.1.0) (09-30-2014)
-- [0.2.0 Marketing](#0.2.0) (10-15-2014)
-- [0.3.0 Flattery](#0.3.0) (10-31-2014)
+- [0.1.0 Collection](#0.1.0-Collection) (09-30-2014)
+- [0.2.0 Marketing](#0.2.0-Marketing) (10-15-2014)
+- [0.3.0 Flattery](#0.3.0-Flattery) (10-31-2014)
 - [Future Phases](#future-phases) (unassigned)
 
-## 0.1.0 Collection (9-30-2014)
+## 0.1.0 Collection
 - The app should be available in both English and Japanese
 - Anon should be able to log in as a User
 - User should be able to submit a new location
