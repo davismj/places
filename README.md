@@ -32,7 +32,7 @@ To become the primary source for consumers to find businesses and coprorations t
 - A user should register an account through an email validation.
 
 ## 0.3.0 Flattery
-- A user should have a page with general activity including public information, stats, and badges.
+- A user should have a page with general activity including public information, an image, stats, and badges.
 - A user should get some of visual feedback with every action they take, viz. experience points or badges.
 
 ## Future Phases
