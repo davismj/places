@@ -1,7 +1,7 @@
 ##Vision: To change the paradigm of how corporations operate in Japan.
 ##Mission:
 ##Core Values
--Fail Faster
+- Fail Faster
 ##Milestones
 -0.1.0 Collection (9-30-2014)
 -0.2.0 Marketing (10-15-2014)
