@@ -41,7 +41,7 @@ router.post('/login', function(req, res) {
 			else {
 				user.hash = uuid.v4();
 				user.save();
-				res.cookie(config.key, user.hash);
+				res.cookie(config.key, user.hash, { expires: new Date(Date.now() + 31536000000) });
 				res.json(user.toJson());
 			} 
 		});
@@ -63,7 +63,6 @@ router.post('/logout', function(req, res) {
 });
 
 // TODO fix registration process, unique registrations, configurable url
-
 router.post('/register', function(req, res) {
 	if (!req.body.email 
 		|| !req.body.password)
@@ -104,7 +103,7 @@ router.post('/confirm', function(req, res) {
 				res.send(404);
 			user.allow('login');
 			user.save();
-			res.cookie(config.key, user.hash);
+			res.cookie(config.key, user.hash, { expires: new Date(Date.now() + 31536000000) });
 			res.json(user.toJson());
 		});
 });

@@ -14,7 +14,6 @@ router.get('/', function(req, res) {
 
 router.use('/location', location.routes);
 router.use('/auth', auth.routes);
-)
 app.use(bodyParser.json({strict:false}));
 app.use(cookieParser());
 app.use(function(req, res, next) {
