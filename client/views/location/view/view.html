@@ -32,7 +32,7 @@
 	</div>
 	<div class="col-1-3">
 		<div id="checkin" class="card" ng-show="auth.loggedIn">
-			<i class="fa fa-check-square-o" ng-hide="checkedin" ng-click="visit()"></i>
+			<i class="fa fa-check-square-o" ng-hide="checkedin" ng-click="registerVisit()"></i>
 			<i class="fa fa-check-square" ng-show="checkedin"></i>
 			{{checkedin ? 'CHECKEDIN' : 'CHECKIN' | translate}}
 		</div>
@@ -41,21 +41,30 @@
 <div class="row">
 	<img id="view-map" class="shadow" ng-src="http://www.mapquestapi.com/staticmap/v4/getmap?key={{key}}&size={{mapWidth}},100&zoom=14&center={{location.loc.coordinates[1]}},{{location.loc.coordinates[0]}}&scalebar=false&pois=mcenter,{{location.loc.coordinates[1]}},{{location.loc.coordinates[0]}}" />
 </div>
-<div class="row" ng-show="auth.loggedIn && (review.editing || review.body)">
-	<div class="card" ng-class="{ collapse: !review.editing && review.body }">
-		<span ng-hide="review.editing">{{ review.body }}</span>
-		<h1 ng-show="review.editing"class="title">
+<div class="row" ng-show="auth.loggedIn">
+	<div class="card" ng-class="{ collapse: !editingReview }">
+		<span ng-hide="editingReview">
+			<span class="pull-right">
+				<i class="fa fa-star" ng-show="visit.rating > 0"></i>
+				<i class="fa fa-star" ng-show="visit.rating > 1"></i>
+				<i class="fa fa-star" ng-show="visit.rating > 2"></i>
+				<i class="fa fa-star" ng-show="visit.rating > 3"></i>
+				<i class="fa fa-star" ng-show="visit.rating > 4"></i>
+			</span>
+			<span class="pull-center">{{ visit.body || auth.email }}</span>
+		</span>
+		<h1 class="title" ng-show="editingReview">
 			Your experience
 			<span class="pull-right">
-				<i class="fa" ng-click="rate(1)" ng-class="'fa-star' + (review.rating < 1 ? '-o' : '')"></i>
-				<i class="fa" ng-click="rate(2)" ng-class="'fa-star' + (review.rating < 2 ? '-o' : '')"></i>
-				<i class="fa" ng-click="rate(3)" ng-class="'fa-star' + (review.rating < 3 ? '-o' : '')"></i>
-				<i class="fa" ng-click="rate(4)" ng-class="'fa-star' + (review.rating < 4 ? '-o' : '')"></i>
-				<i class="fa" ng-click="rate(5)" ng-class="'fa-star' + (review.rating < 5 ? '-o' : '')"></i>
+				<i class="fa" ng-click="rate(1)" ng-class="'fa-star' + (visit.rating < 1 ? '-o' : '')"></i>
+				<i class="fa" ng-click="rate(2)" ng-class="'fa-star' + (visit.rating < 2 ? '-o' : '')"></i>
+				<i class="fa" ng-click="rate(3)" ng-class="'fa-star' + (visit.rating < 3 ? '-o' : '')"></i>
+				<i class="fa" ng-click="rate(4)" ng-class="'fa-star' + (visit.rating < 4 ? '-o' : '')"></i>
+				<i class="fa" ng-click="rate(5)" ng-class="'fa-star' + (visit.rating < 5 ? '-o' : '')"></i>
 			</span>
 		</h1>
-		<textarea class="spaced full-width" rows="3" ng-show="review.editing" ng-model="review.body"></textarea>
-		<button class="action" ng-show="review.editing" ng-click="visit()">
+		<textarea class="spaced full-width" rows="3" ng-show="editingReview" ng-model="visit.body"></textarea>
+		<button class="action" ng-show="editingReview" ng-click="registerVisit()">
 			<i class="fa fa-check"></i>
 			{{'LEAVE_REVIEW' | translate}}
 		</button>
@@ -63,6 +72,6 @@
 </div>
 <div class="row" ng-repeat="review in location.reviews">
 	<div class="card">
-		{{ review.body }}
+		{{ visit.body }}
 	</div>
 </div>
