@@ -26,6 +26,8 @@ router.get('/', function(req, res) {
 			$regex: '.*' + req.query.search + '.*',
 		 	$options: '-i'
 		};
+
+	console.log(JSON.stringify(query));
 		
 	mongo.use('locations', function(locations) {
 		locations
@@ -81,7 +83,13 @@ router.get('/:id/visit', function(req, res) {
 		res.send(400).end();
 	mongo.use('visits', function(visits) {
 		visits
-			.find({ location: id, body: { $exists: true }  }, { limit: 10 })
+			.find({ 
+				location: id, 
+				body: { $exists: true } 
+			},{ 
+				sort: ['timestamp',' desc'], 
+				limit: 10 
+			})
 			.toArray(function(err, visits) {
 				if (err)
 					res.send(500, err);

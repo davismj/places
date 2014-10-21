@@ -28,11 +28,16 @@ angular.module('auth', [])
 			this.id = null;
 			this.email = null;
 
-			var flags = "0";
+			var flags = 0;
 			Object.defineProperty(this, 'flags', {
 				get: function() { return flags; },
-				set: function(v) { flags = (v || 0).toString(2); },
-				enumerable: true
+				set: function(v) { flags = v || 0; }
+			});
+			
+			var visits = {};
+			Object.defineProperty(this, 'visits', {
+				get: function()  { return visits; },
+				set: function(v) { visits = v || {} }
 			});
 		}
 

@@ -8,33 +8,56 @@ angular.module('placesApp')
 		var Location = Restangular.one(config.path + 'location', $stateParams.id);
 
 		$scope.location = Location.get().$object;
-		$scope.location.reviews = Location.getList('visit').$object;
+		$scope.location.reviews = [];
+		Location
+			.getList('visit')
+			.then(function(reviews) {
+
+				// if logged in
+				if (auth.id) {
+
+					// remove this user's review if present and attach it to the user and the page
+					var visit = _.remove(reviews, { user: auth.id })[0];
+					if (visit) {
+						$scope.visit.rating = visit.rating;
+						$scope.visit.body = visit.body;
+						$scope.checkedin = true;
+						$scope.editingReview = visit.rating && visit.body;
+						auth.visits[$stateParams.id] = visit;
+					}
+				}
+
+				$scope.location.reviews = reviews;
+			});
 
 		$scope.auth = auth;
 
 		$scope.key = config.mapKey;
 		$scope.mapWidth = document.getElementById('view-map').width;
 
-		// checkins
-		$scope.checkedin = false;
-
-		// review
-		$scope.review = {
-			rating: null,
+		// visit 
+		$scope.visit = auth.visits[$stateParams.id];
+		$scope.checkedin = !!$scope.visit;
+		$scope.editingReview = !$scope.visit;
+		$scope.visit = $scope.visit || {
 			body: null,
-			editing: true
+			rating: null
 		};
 
 		$scope.rate = function(rating) {
-			$scope.review.rating = rating;
+			if ($scope.editingReview)
+				$scope.visit.rating = rating;
 		};
 
-		$scope.visit = function() {
+		$scope.registerVisit = function() {
 			$http.post(
 				locationUrl + '/visit', 
-				JSON.stringify($scope.review)
+				JSON.stringify($scope.visit)
 			);
+
+			auth.visits[$stateParams.id] = $scope.visit;
+
 			$scope.checkedin = true;
-			$scope.review.editing = false;
-		}
+			$scope.editingReview = !($scope.visit.rating || $scope.visit.body);
+		};
 	});
