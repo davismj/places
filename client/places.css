@@ -28,13 +28,24 @@ input[type="email"] {
 	border-radius: 4px;
 	font-size: 22px;
 }
+select,
+option {
+	padding: 0;
+	border: 0;
+	margin: -1px 0 0 0;
+	width: 100%;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+}
 a {
 	text-decoration: none;
 	color: inherit;
 }
 p,
 dl,
-ul {
+ul,
+form {
 	padding: 0;
 	margin: 0;
 }
@@ -62,9 +73,10 @@ li + li {
 [class*='col-'] {
   float: left;
   display: block;
+  position: relative;
 }
 [class*='col-'] + [class*='col-'] {
-		padding-left: 12px;
+	padding-left: 12px;
 }
 .col-1-5 {
 	width: 20%;
@@ -130,6 +142,9 @@ li + li {
 .scroll {
 	overflow-y: auto;
 }
+.hide {
+	display: none;
+}
 .shadow,
 .card {
 	box-shadow: 1px 2px 1px rgba(0,0,0,0.3);
@@ -154,12 +169,12 @@ li + li {
 	color: rgb(192, 192, 192);
 	background-color: rgb(64, 64, 64);
 }
-.card > .title {
+.card .title {
 	padding: 0;
-	margin: 0;
+	margin: 0 0 2px 0;
 	font-weight: bold;
 }
-.card > .action {
+.card .action {
 	width: 100%;
 	display: block;
 	border: 0;
@@ -174,7 +189,7 @@ li + li {
 	font-family: inherit;
 	color: inherit;
 }
-.card > .action i {
+.card .action i {
 	margin: 0 4px;
 }
 

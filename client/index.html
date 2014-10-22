@@ -17,7 +17,10 @@
 				<a ui-sref="search">P</a>
 			</div>
 			<div id="profile" class="icon bg-dark-i pull-right">
-				<a ui-sref="auth">
+				<a ng-hide="auth.loggedIn" ui-sref="auth">
+					<i class="fa fa-user"></i>
+				</a>
+				<a ng-show="auth.loggedIn" ui-sref="user">
 					<i class="fa fa-user"></i>
 				</a>
 			</div>
@@ -26,7 +29,7 @@
 			</form>
 		</header>
 		<section ui-view class="bg-light"></section>
-		<a id="feedback" class="rotate" href="http://goo.gl/forms/QE2r6gQxIJ" target="_blank">Feedback</a>
+		<!-- <a id="feedback" class="rotate" href="http://goo.gl/forms/QE2r6gQxIJ" target="_blank">Feedback</a> -->
 	</body>
 
 	<script src="lib/lodash-2.4.1/lodash.js"></script>
@@ -46,6 +49,7 @@
 	<script src="config.js"></script>
 	
 	<script src="views/auth/auth-controller.js"></script>
+	<script src="views/user/user-controller.js"></script>
 	<script src="views/search/search-controller.js"></script>
 	<script src="views/location/view/view-controller.js"></script>
 	<script src="views/location/edit/edit-controller.js"></script>

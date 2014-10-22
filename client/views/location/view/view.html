@@ -44,14 +44,14 @@
 <div class="row" ng-show="auth.loggedIn">
 	<div class="card" ng-class="{ collapse: !editingReview }">
 		<span ng-hide="editingReview">
-			<span class="pull-right">
+			<span class="pull-right fade-in">
 				<i class="fa fa-star" ng-show="visit.rating > 0"></i>
 				<i class="fa fa-star" ng-show="visit.rating > 1"></i>
 				<i class="fa fa-star" ng-show="visit.rating > 2"></i>
 				<i class="fa fa-star" ng-show="visit.rating > 3"></i>
 				<i class="fa fa-star" ng-show="visit.rating > 4"></i>
 			</span>
-			<span class="pull-center">{{ visit.body || auth.email }}</span>
+			<div>{{ visit.body || auth.email }}</div>
 		</span>
 		<h1 class="title" ng-show="editingReview">
 			Your experience

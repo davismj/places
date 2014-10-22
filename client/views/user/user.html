@@ -1,0 +1,73 @@
+<style>
+	#avatar {
+		height: 64px;
+		width: 64px;
+		border-radius: 50%;
+		margin: 2px auto;
+		display: block;
+		background-image :url('img/user/1.png');
+		background-origin: center;
+		background-size: contain;
+		cursor: pointer;
+ 	}
+
+</style>
+<form class="row" ng-submit="updateUser()">
+	<div class="col-2-3">
+		<div class="card">
+			<label class="input-group">
+				<div class="pull-left label">Name</div>
+				<div class="pull-center input">
+					<input type="text" ng-model="user.name" />
+				</div>
+			</label>
+			<label class="input-group" ng-show="titles.length > 0">
+				<div class="pull-left label">Title</div>
+				<div class="pull-center input">
+					<!-- <select ng-model="user.title" ng-options="titles"></select> -->
+				</div>
+			</label>
+			<!-- <label class="input-group">
+				<div class="pull-left label">--change email--</div>
+				<div class="pull-center input">
+					<input type="text" />
+				</div>
+			</label>
+			<label class="input-group">
+				<div class="pull-left label">--change password--</div>
+				<div class="pull-center input">
+					<input type="text" />
+				</div>
+			</label> -->
+			<button class="action" type="submit">
+				<i class="fa fa-share"></i>
+				Submit
+			</button>
+		</div>
+	</div>
+	<div class="col-1-3">
+		<div class="card">
+			<div id="avatar" ng-click="selectImage()">
+				<!-- <i class="fa fa-user"></i> -->
+			</div>
+			<input id="avatar-upload" class="hide" type="file" />
+		</div>
+	</div>
+</form>
+<section class="row">
+	<div class="card">
+		<h1 class="title">badges</h1>
+			<!-- <p>Level</p>
+			<p>Reputation</p> -->
+			<p>badges</p>
+	</div>
+</section>
+<section class="row">
+	<div class="card">
+		<h1 class="title">stats</h1>
+			<p>{{ user.checkins }}</p>
+			<p>{{ user.reviews }}</p>
+			<!-- <p>--Positve/negative distribution--</p> -->
+			<!-- <p>--fun stuff--</p> -->
+	</div>
+</section>

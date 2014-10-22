@@ -1,7 +1,7 @@
 angular.module('auth', [])
 	.provider('auth', function AuthProvider() {
 			
-		var $http, $q;
+		var $http, $q, verify;
 
 		// AuthProvider attributes
 		this.apiUri = 'api/auth';
@@ -13,6 +13,9 @@ angular.module('auth', [])
 
 		// declare persistant user-specific things here
 		function Auth(apiUri) {
+
+			var auth = this;
+			verify = $q.defer();
 
 			Object.defineProperty(this, 'apiUri', {
 				value: apiUri,
@@ -31,14 +34,27 @@ angular.module('auth', [])
 			var flags = 0;
 			Object.defineProperty(this, 'flags', {
 				get: function() { return flags; },
-				set: function(v) { flags = v || 0; }
+				set: function(v) { flags = v || 0; },
+				enumerable: true
 			});
 			
 			var visits = {};
 			Object.defineProperty(this, 'visits', {
 				get: function()  { return visits; },
-				set: function(v) { visits = v || {} }
+				set: function(v) { visits = v || {} },
+				enumerable: true
 			});
+
+			$http
+				.get(apiUri + 'verify')
+				.success(function(user) {
+					if (user)
+						auth.setUser(user);
+					verify.resolve(auth);
+				})
+				.error(function() {
+					verify.reject(auth);
+				});
 		}
 
 		angular.extend(Auth, {
@@ -65,25 +81,9 @@ angular.module('auth', [])
 				}, this);
 		};
 
-		/* @method verify
-		 * Queries the server to get the user associated with the credentials
-		 * stored locally.
-		 * @returns {Promise} A promise for the result of the verify call.
-		 */
 		Auth.prototype.verify = function() {
-			var dfd = $q.defer(),
-				auth = this;
-			$http
-				.get(auth.apiUri + 'verify')
-				.success(function(data, status) {
-					auth.setUser(data);
-					dfd.resolve(arguments); 
-				})
-				.error(function(response, status) {
-					dfd.reject(response, status); 
-				});
-			return dfd.promise;
-		}
+			return verify.promise;
+		};
 
 		// /* @method login
 		//  * Posts the current email and password to the login endpoint. If

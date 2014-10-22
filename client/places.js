@@ -1,4 +1,4 @@
-angular.module('placesApp', ['auth', 'search', 'translate', 'ui.router', 
+	angular.module('placesApp', ['auth', 'search', 'translate', 'ui.router', 
 	'restangular'])
 
 	.config(['config', 'authProvider', 'searchProvider', '$stateProvider', 
@@ -22,6 +22,16 @@ angular.module('placesApp', ['auth', 'search', 'translate', 'ui.router',
 				url: '/login',
 				templateUrl: 'views/auth/auth.html'
 			})
+			.state('user', {
+				url: '/user',
+				templateUrl: 'views/user/user.html',
+				controller: 'userCtrl',
+				resolve: {
+					verify: function(auth) {
+						return auth.verify();
+					}
+				}
+			})
 		    .state('edit', {
 		    	url: '/place/:id/edit',
 		        templateUrl: 'views/location/edit/edit.html',
@@ -34,10 +44,16 @@ angular.module('placesApp', ['auth', 'search', 'translate', 'ui.router',
 		    });
 	}])
 
-	.run(['auth', function($auth) {
-		return $auth.verify(); 
-	}])
+	.run(function($rootScope, auth) {
+	    $rootScope.$on(
+			'$stateChangeStart', 
+			function(event, toState, toParams, fromState, fromParams) { 
+		    	// event.preventDefault(); // to prevent navigation
+			}
+		);
+	})
 
-	.controller('mainCtrl', function($scope, search) {
+	.controller('mainCtrl', function($scope, search, auth) {
 		$scope.search = search;
+		$scope.auth = auth;
 	});

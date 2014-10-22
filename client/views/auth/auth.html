@@ -3,38 +3,56 @@
 		color: red;
 	}
 </style>
-<h1>Authentication</h1>
-<section ng-controller="loginCtrl">	
-	<h1>
-		Login
-		<span class="error" ng-bind="error"></span>
-	</h1>
-	<form ng-submit="login()">
-		<div>
-			<label>{{'EMAIL' | translate }}</label>
-			<input type="text" ng-model="email">
-		</div>
-		<div>
-			<label>{{'PASSWORD' | translate}}</label>
-			<input type="password" ng-model="password">
-		</div>
-		<input type="submit" value="{{'SUBMIT' | translate}}"/> 
-	</form>
+<section class="row" ng-controller="loginCtrl">	
+	<div class="card">
+		<h1 class="title">
+			Login
+			<span class="error" ng-bind="error"></span>
+		</h1>
+		<form ng-submit="login()">
+			<label class="input-group">
+				<div class="pull-left label">{{'EMAIL' | translate}}:</div>
+				<div class="pull-center input">
+					<input class="full-width" type="email" ng-model="email" />
+				</div>
+			</label>
+			<label class="input-group">
+				<div class="pull-left label">{{'PASSWORD' | translate}}:</div>
+				<div class="pull-center input">
+					<input class="full-width" type="password" ng-model="password">
+				</div>
+			</label>
+			<button class="action" type="submit">
+				<i class="fa fa-share"></i>
+				{{'SUBMIT' | translate}}
+			</button>
+		</form>
+	</div>
 </section>
-<section ng-controller="registerCtrl">	
-	<h1>
-		Register
-		<span class="error" ng-bind="error"></span>
-	</h1>
-	<form ng-submit="register()">
-		<div>
-			<label>{{'EMAIL' | translate }}</label>
-			<input type="text" ng-model="email">
-		</div>
-		<div>
-			<label>{{'PASSWORD' | translate}}</label>
-			<input type="password" ng-model="password">
-		</div>
-		<input type="submit" value="{{'SUBMIT' | translate}}"/> 
-	</form>
+
+<section class="row" ng-controller="registerCtrl">	
+	<div class="card">
+		<h1 class="title">
+			Register
+			<span class="error" ng-bind="error"></span>
+		</h1>
+		<form ng-submit="register()">
+			<label class="input-group">
+				<div class="pull-left label">{{'EMAIL' | translate}}:</div>
+				<div class="pull-center input">
+					<input class="full-width" type="email" ng-model="email" />
+				</div>
+			</label>
+			<label class="input-group">
+				<div class="pull-left label">{{'PASSWORD' | translate}}:</div>
+				<div class="pull-center input">
+					<input class="full-width" type="password" ng-model="password">
+				</div>
+			</label>
+			<button class="action" type="submit">
+				<i class="fa fa-share"></i>
+				{{'SUBMIT' | translate}}
+			</button>
+		</form>
+	</div>
 </section>
