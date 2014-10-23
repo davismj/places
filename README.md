@@ -50,3 +50,4 @@ To become the primary source for consumers to find businesses and coprorations t
 - Add source control.
 - p2p chat on locations
 - a user may not like the selection of yet-to-complete badges on the user page. he should be able to expend rep to refresh the list or increase the number of visible yet-to-complete badges
+- actions should leave marks, mayors, initial submitters, etc., to encourage people to compete
