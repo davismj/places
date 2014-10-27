@@ -1,31 +1,22 @@
+var _ = require('lodash');
 var subscriptions = {};
 
-// function Subscription(events, callbacks) { 
-// 	this.events = events;
-// 	this.callback = callback;
-// }
-
-function notify(events, data) {
-	var callbacks = subscriptions[events] || [];
+function notify(event, args) {
+	args = _.flatten([args], true);
+	var callbacks = subscriptions[event] || [];
 	callbacks.forEach(function(cb) {
-		cb(data);
+		cb.apply(this, args);
 	});
 }
 
-function subscribe(events, callback) {
-	subscriptions[events] = subscriptions[events] || [];
-	subscriptions[events].push(callback);
-	// return new Subscription(events, callback)
+function subscribe(event, callback) {
+	subscriptions[event] = subscriptions[event] || [];
+	subscriptions[event].push(callback);
 }
-
-// function unsubscribe(events, callback) {
-// 	subscriptions[events] = subscriptions[events] || [];
-// 	var index = subscriptions[events].indexOf(callback);
-// 	if (index >= 0)
-// 		subcriptions[events].splice(index, 1);	
-// }
 
 module.exports = {
 	notify: notify,
 	subscribe: subscribe
 };
+
+//EVENT_RE = /'[a-z]+:[a-z]+(\?[a-z]+=[a-z]+)?/i;

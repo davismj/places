@@ -1,5 +1,5 @@
-	angular.module('placesApp', ['auth', 'search', 'translate', 'ui.router', 
-	'restangular'])
+	angular.module('placesApp', ['auth', 'search', 'translate', 'progress', 
+		'ui.router', 'restangular'])
 
 	.config(['config', 'authProvider', 'searchProvider', '$stateProvider', 
 		'$urlRouterProvider', 
@@ -56,4 +56,15 @@
 	.controller('mainCtrl', function($scope, search, auth) {
 		$scope.search = search;
 		$scope.auth = auth;
+		$scope.doit = function() {
+			var profile = document.getElementById('profile');
+			// profile.classList.remove('close');
+			profile.classList.add('open');
+			window.setTimeout(function() {
+				profile.classList.remove('open');
+			}, 2000);
+			// assign points
+			// profile.className.remove('open');
+			// profile.className += 'close';
+		};
 	});

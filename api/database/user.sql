@@ -3,7 +3,8 @@ create table users(
 	email varchar(64) not null unique,
 	password char(60) not null,
 	hash uuid,
-	flags bigint not null default 0
+	flags bigint not null default 0,
+	name varchar(128)
 );
 
 insert into users (email, password, flags) values(

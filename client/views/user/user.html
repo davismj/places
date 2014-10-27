@@ -5,11 +5,37 @@
 		border-radius: 50%;
 		margin: 2px auto;
 		display: block;
-		background-image :url('img/user/1.png');
 		background-origin: center;
 		background-size: contain;
 		cursor: pointer;
  	}
+
+ 	.badge {
+ 		height: 36px;
+		width: 36px;
+		margin-right: 6px;
+ 	}
+ 	
+	.progressBar {
+		margin: 2px;
+		border: 1px;
+		border-style: solid;
+		border-color: rgba(96,96,96,0.4);
+		border-radius: 12px;
+		font-size: 8px;
+		font-weight: bolder;
+		text-align: center;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.progress {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		top: 0;
+		background: rgba(0,192,0,0.6);
+	}
 
 </style>
 <form class="row" ng-submit="updateUser()">
@@ -47,7 +73,7 @@
 	</div>
 	<div class="col-1-3">
 		<div class="card">
-			<div id="avatar" ng-click="selectImage()">
+			<div id="avatar" ng-click="selectImage()" ng-style="avatar">
 				<!-- <i class="fa fa-user"></i> -->
 			</div>
 			<input id="avatar-upload" class="hide" type="file" />
@@ -55,19 +81,22 @@
 	</div>
 </form>
 <section class="row">
-	<div class="card">
-		<h1 class="title">badges</h1>
-			<!-- <p>Level</p>
-			<p>Reputation</p> -->
-			<p>badges</p>
+	<div class="card row">
+		<!-- <h1 class="title">Badges</h1> -->
+		<div class="col-1-2" ng-repeat="badge in badges">
+			<img class="badge pull-left" ng-src="img/badges/{{ badge.id }}.png" />
+			<span class="title">{{ badge.name }}</span>
+			<progress-bar ng-progress="badge.progress"></progress-bar>
+			<span class="text-xs">{{ badge.description }}</span>
+		</div>
 	</div>
 </section>
-<section class="row">
+<!-- <section class="row">
 	<div class="card">
 		<h1 class="title">stats</h1>
 			<p>{{ user.checkins }}</p>
 			<p>{{ user.reviews }}</p>
-			<!-- <p>--Positve/negative distribution--</p> -->
-			<!-- <p>--fun stuff--</p> -->
+			<!-- <p>--Positve/negative distribution--</p>
+			<!-- <p>--fun stuff--</p>
 	</div>
-</section>
+</section> -->

@@ -12,7 +12,8 @@
 		"node-uuid": "1.x.x",
 		"lodash": "2.x.x",
 		"sequelize": "1.x.x",
-		"nodemailer": "1.x.x"
+		"nodemailer": "1.x.x",
+		"formidable": "1.x.x"
 	},
 	"devDependencies": {
 		"gulp": "3.x.x",

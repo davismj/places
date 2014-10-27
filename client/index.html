@@ -13,9 +13,9 @@
 	</head>
 	<body ng-controller="mainCtrl">
 		<header class="padded shadow-i bg-dark">
-			<div id="logo" class="icon bg-dark-i pull-left">
+			<!-- <div id="logo" class="icon bg-dark-i pull-left">
 				<a ui-sref="search">P</a>
-			</div>
+			</div> -->
 			<div id="profile" class="icon bg-dark-i pull-right">
 				<a ng-hide="auth.loggedIn" ui-sref="auth">
 					<i class="fa fa-user"></i>
@@ -24,12 +24,14 @@
 					<i class="fa fa-user"></i>
 				</a>
 			</div>
-			<form id="search" class="pull-center" ng-submit="search.search()">
+			<!-- <form id="search" class="pull-center" ng-submit="search.search()">
 				<input class="full-width" type="search" placeholder="search" ng-model="search.query.search" />
-			</form>
+			</form> -->
 		</header>
 		<section ui-view class="bg-light"></section>
-		<!-- <a id="feedback" class="rotate" href="http://goo.gl/forms/QE2r6gQxIJ" target="_blank">Feedback</a> -->
+		<a id="feedback" class="rotate" ng-click="doit()">
+		 <!-- href="http://goo.gl/forms/QE2r6gQxIJ" target="_blank"> -->
+		 	Feedback</a>
 	</body>
 
 	<script src="lib/lodash-2.4.1/lodash.js"></script>
@@ -44,6 +46,7 @@
 	<script src="components/auth/auth-provider.js"></script>
 	<script src="components/search/search-provider.js"></script>
 	<script src="components/translate/translate.js"></script>
+	<script src="components/progress/progress-directive.js"></script>
 
 	<script src="places.js"></script>
 	<script src="config.js"></script>

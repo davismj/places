@@ -79,6 +79,10 @@ angular.module('auth', [])
 				.forEach(function(key) {
 					this[key] = data[key];
 				}, this);
+
+		    var source = new EventSource('/places/api/user/' + data.id + '/score');
+		    source.onopen = function(e) { console.log(e.data); };
+		    source.onmessage = function(e) { console.log(e.data); };
 		};
 
 		Auth.prototype.verify = function() {

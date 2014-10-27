@@ -14,7 +14,8 @@ module.exports =
 		email: { type: Sequelize.STRING, allowNull: false, unique: true },
 		password: { type: Sequelize.STRING, allowNull: false },
 		hash: Sequelize.UUID,
-		flags: { type: Sequelize.BIGINT, allowNull: false, defaultValue: 0 }
+		flags: { type: Sequelize.BIGINT, allowNull: false, defaultValue: 0 },
+		name: { type: Sequelize.STRING, allowNull: true }
 	},{ 
 		timestamps: false,
 		instanceMethods: {
@@ -22,7 +23,8 @@ module.exports =
 				return {
 					id: this.id,
 					email: this.email,
-					flags: this.flags
+					flags: this.flags,
+					name: this.name
 				}
 			},
 			can: function(permission) {

@@ -5,27 +5,15 @@ var express = require('express'),
 	cookieParser = require('cookie-parser'),
 	config = require('./config'),
 	auth = require('./auth'),
-	awards = require('./badge'),
+	user = require('./user'),
 	location = require('./location');
 
-router.get('/', function(req, res) {
-	res.json({ Hello: "Treyland!" });	
-});
+require('./badge');
 
 router.use('/location', location.routes);
+router.use('/user', user.routes);
 router.use('/auth', auth.routes);
-app.use(bodyParser.json({strict:false}));
+app.use(bodyParser.json({strict:false, limit: 2000000}));
 app.use(cookieParser());
-app.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	next();
-});
 app.use(config.path, router);
 app.listen(config.port);
-
-app.all('*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
- });

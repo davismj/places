@@ -3,7 +3,7 @@ var express = require('express'),
 	_ = require('lodash'),
 	mongo = require('./mongo'),
 	auth = require('./auth'),
-	Events = require('./event'),
+	Event = require('./event'),
 	Location = require('./models/location'),
 	Visit = require('./models/visit');
 
@@ -108,12 +108,15 @@ router.post('/:id/visit', function(req, res) {
 			var visit = new Visit(req.body);
 			visit.user = user.id;
 			visit.location = id;
-			visits.update(
+			visits.findAndModify(
 				{ location: id, user: user.id, timestamp: { $gt: new Date(Date.now() - (1000*60*60)) } },
+				null,
 				visit,
 				{ upsert: true },
-				function complete(err, count, status) {
-					Events.notify('insert visit', visit); // TODO check if new or existing
+				function complete(err, old) {
+					console.log(old);
+					var event = (old ? 'update' : 'insert') + ':visit';
+					Event.notify(event, [visit, old]);
 					visits.mapReduce(
 
 						// map visits per user
