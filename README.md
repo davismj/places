@@ -39,11 +39,11 @@ To become the primary source for consumers to find businesses and coprorations t
 ## 0.4.0 Usefulness
 The goal of 0.4.0 is to give early adopters a painless user experience. The plan is to get at least 20 regular users, get feedback from them, and construct deliverables around the feedback.
 - A user will be able to complete the following user story for 5 locations a day for 5 consecutive days.
-- - Search for a nearby location,
-- - Optionally add it if not found,
-- - Check in,
-- - Optionally leave a review when they are done,
-- - and repeat for a new location.
+  - Search for a nearby location,
+  - Optionally add it if not found,
+  - Check in,
+  - Optionally leave a review when they are done,
+  - and repeat for a new location.
 - A user will be able to find the intended location on 75% of searches.
 
 ## Future Phases
