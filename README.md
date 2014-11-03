@@ -11,6 +11,7 @@ To become the primary source for consumers to find businesses and coprorations t
 - [0.1.0 Collection](#010-collection) (09-30-2014)
 - [0.2.0 Marketing](#020-marketing) (10-15-2014)
 - [0.3.0 Flattery](#030-flattery) (10-31-2014)
+- [0.4.0 Usefulness](#040-usefulness) (10-31-2014)
 - [Future Phases](#future-phases) (unassigned)
 
 ## 0.1.0 Collection
@@ -34,6 +35,16 @@ To become the primary source for consumers to find businesses and coprorations t
 ## 0.3.0 Flattery
 - A user should have a page with general activity including public information, an image, stats, and badges.
 - A user should get some of visual feedback with every action they take, viz. experience points or badges.
+
+## 0.4.0 Usefulness
+The goal of 0.4.0 is to give early adopters a painless user experience. The plan is to get at least 20 regular users, get feedback from them, and construct deliverables around the feedback.
+- A user will be able to complete the following user story for 5 locations a day for 5 consecutive days.
+  - Search for a nearby location,
+  - Optionally add it if not found,
+  - Check in,
+  - Optionally leave a review when they are done,
+  - and repeat for a new location.
+- A user will be able to find the intended location on 75% of searches.
 
 ## Future Phases
 - A place should handle basic information such as a category (eg. coffee shop), many tags (eg. coffee, alcohol, lunch, wifi), hours of operation, a picture, and a map.
