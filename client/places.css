@@ -23,10 +23,14 @@ textarea {
 input[type="search"],
 input[type="text"],
 input[type="email"] {
-	padding: 2px 6px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	font-size: 22px;
+	font-size: inherit;
+	font-weight: inherit;
+	font-family: inherit;
+	color: inherit;
+	padding-top: 0;
+	border: 0;
+	border-bottom: 1px solid;
+	margin-top: 0;
 }
 select,
 option {
@@ -153,12 +157,15 @@ li + li {
 	box-shadow: inset 1px -2px 1px rgba(0,0,0,0.3);
 }
 .bg-dark {
-	color: rgb(255, 255, 255);
-	background-color: rgb(0, 0, 0);
+	color: rgb(224, 224, 224);
+	background-color: rgb(32, 32, 32);
 }
-.bg-dark-i,
+.bg-dark-i{
+	color: rgb(32, 32, 32);
+	background-color: rgb(224, 224, 224);
+}
 .card {
-	color: rgb(0, 0, 0);
+	color: rgb(0,0,0);
 	background-color: rgb(255, 255, 255);
 }
 .bg-light {
@@ -236,7 +243,21 @@ body {
 	border: 0;
 	margin-top: 0;
 }
+.fade-out {
+	position: relative;
+	white-space: nowrap;
+}
 
+.fade-out:after {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 50px;
+	content: "";
+	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,1) 100%);
+}
 header {
 	height: 48px;
 	width: 100%;
@@ -268,28 +289,28 @@ body > section {
 	margin-top: 2px;
 }
 #search {
-	padding: 0 12px;
+	padding: 3px 12px;
+	font-size: 1.25em;
+}
+#notification {
+	position: fixed;
+	top: -32px;
+	right: 10%;
+	left: 10%;
+	height: 32px;
+	font-size: 1.5em;
+	font-weight: bold;
+	padding: 0px 4px;
 }
 
-.fade-out {
-	position: relative;
-	white-space: nowrap;
-}
-
-.fade-out:after {
-	display: block;
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	width: 50px;
-	content: "";
-	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,1) 100%);
+#notification.display {
+    -webkit-animation: open 0.5s ease-out forwards, close 0.5s 2.5s ease-in forwards;
+    animation: open 0.5s ease-out forwards, close 0.5s 2.5s ease-in forwards;
 }
 
 #feedback {
 	position: fixed;
-	top: 103px;
+	top: 102px;
 	right: -55px;
 	background: darkblue;
 	color: antiquewhite;
@@ -321,18 +342,23 @@ body > section {
 #profile:not(.open) {
     -webkit-animation: close 1s ease-in-out forwards;
     animation: close 1s ease-in-out forwards;
-}
+}*/
 
 @-webkit-keyframes open {
-    100% { width: 100%; }
+    0% { top: -32px; }
+    100% { top: 0; }
 }
 @keyframes open {
-    100% { width: 100%; }
+    0% { top: -32px; }
+    100% { top: 0; }
 }
 
 @-webkit-keyframes close {
-    100% { width: 36px; }
+    0% { top: 0; }
+    100% { top: -32px; }
+    
 }
 @keyframes close {
-    100% { width: 36px; }
-}*/
+	0% { top: 0; }
+    100% { top: -32px; }   
+}

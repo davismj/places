@@ -12,10 +12,11 @@
 		<link rel="stylesheet" href="lib/font-awesome-4.2.0/css/font-awesome.css" />
 	</head>
 	<body ng-controller="mainCtrl">
+		<div id="notification" class="bg-light-i"></div>
 		<header class="padded shadow-i bg-dark">
-			<!-- <div id="logo" class="icon bg-dark-i pull-left">
+			<div id="logo" class="icon bg-dark-i pull-left">
 				<a ui-sref="search">P</a>
-			</div> -->
+			</div>
 			<div id="profile" class="icon bg-dark-i pull-right">
 				<a ng-hide="auth.loggedIn" ui-sref="auth">
 					<i class="fa fa-user"></i>
@@ -24,9 +25,9 @@
 					<i class="fa fa-user"></i>
 				</a>
 			</div>
-			<!-- <form id="search" class="pull-center" ng-submit="search.search()">
-				<input class="full-width" type="search" placeholder="search" ng-model="search.query.search" />
-			</form> -->
+			<form id="search" class="pull-center" ng-submit="search.search()">
+				<input class="full-width bg-dark" type="search" placeholder="search" ng-model="search.query.search" />
+			</form>
 		</header>
 		<section ui-view class="bg-light"></section>
 		<a id="feedback" class="rotate" ng-click="doit()">
@@ -43,6 +44,7 @@
 	<script src="lib/angular-ui-router-0.2.11/angular-ui-router.js"></script>
 	<script src="lib/restangular-1.4.0/restangular.js"></script>
 	
+	<script src="components/notify/notify-service.js"></script>
 	<script src="components/auth/auth-provider.js"></script>
 	<script src="components/search/search-provider.js"></script>
 	<script src="components/translate/translate.js"></script>

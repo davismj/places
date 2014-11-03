@@ -1,13 +1,13 @@
-angular.module('auth', [])
+angular.module('auth', ['notify'])
 	.provider('auth', function AuthProvider() {
 			
-		var $http, $q, verify;
+		var $http, $q, notify, verify;
 
 		// AuthProvider attributes
 		this.apiUri = 'api/auth';
 
-		this.$get = ['$http', '$q', function(http, q) {
-			$http = http, $q = q;
+		this.$get = ['$http', '$q', 'notify', function(http, q, n) {
+			$http = http, $q = q, notify = n;
 			return new Auth(this.apiUri);
 		}];
 
@@ -30,6 +30,8 @@ angular.module('auth', [])
 
 			this.id = null;
 			this.email = null;
+			this.badges = [];
+			this.reputation = 0;
 
 			var flags = 0;
 			Object.defineProperty(this, 'flags', {
@@ -66,13 +68,27 @@ angular.module('auth', [])
 
 		Auth.prototype.can = function(permission) {
 			return this.flags & Auth.FLAGS[permission];
-		}
+		};
+
+		// TODO: Might just be a progress update, don't need to add it
+		Auth.prototype.updateBadge = function(badge) { 
+			this.badges = this.badges || [];
+			this.badges.push(badge);
+			notify.queue('Badge progress: ' + badge.progress);
+		};
+		Auth.prototype.addReputation = function(reputation) {
+			this.reputation = (this.reputation || 0) + reputation;
+			notify.queue('Reputation +' + reputation);
+		};
 
 		// /* @function setUser
 		//  * Uses the passed data to set the user context for the app.
 		//  * @param {object} data Object returned by the verify or login call.
 		//  */
 		Auth.prototype.setUser = function(data) { 
+
+			var user = this;
+
 			this.loggedIn = !!data;
 			data = data || {};
 			Object.keys(this)
@@ -80,9 +96,23 @@ angular.module('auth', [])
 					this[key] = data[key];
 				}, this);
 
-		    var source = new EventSource('/places/api/user/' + data.id + '/score');
-		    source.onopen = function(e) { console.log(e.data); };
-		    source.onmessage = function(e) { console.log(e.data); };
+		    var source = new EventSource(this.apiUri.replace('auth', 'user') + data.id + '/score');
+
+		    source.addEventListener('initialize', function(e) {
+  				var data = JSON.parse(e.data);
+				user.reputation = data.reputation;
+				user.badges = data.badges;
+			});
+
+		    source.addEventListener('reputation', function(e) {
+				var data = JSON.parse(e.data);
+				user.addReputation(data);
+		    });
+
+		    source.addEventListener('badge', function(e) {
+				var data = JSON.parse(e.data);
+				user.updateBadge(data);
+		    });
 		};
 
 		Auth.prototype.verify = function() {
