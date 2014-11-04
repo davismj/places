@@ -11,7 +11,7 @@ To become the primary source for consumers to find businesses and coprorations t
 - [0.1.0 Collection](#010-collection) (09-30-2014)
 - [0.2.0 Marketing](#020-marketing) (10-15-2014)
 - [0.3.0 Flattery](#030-flattery) (10-31-2014)
-- [0.4.0 Usefulness](#040-usefulness) (10-31-2014)
+- [0.4.0 Usefulness](#040-usefulness) (11-30-2014)
 - [Future Phases](#future-phases) (unassigned)
 
 ## 0.1.0 Collection
