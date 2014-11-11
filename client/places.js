@@ -56,15 +56,4 @@
 	.controller('mainCtrl', function($scope, search, auth) {
 		$scope.search = search;
 		$scope.auth = auth;
-		$scope.doit = function() {
-			var profile = document.getElementById('profile');
-			// profile.classList.remove('close');
-			profile.classList.add('open');
-			window.setTimeout(function() {
-				profile.classList.remove('open');
-			}, 2000);
-			// assign points
-			// profile.className.remove('open');
-			// profile.className += 'close';
-		};
 	});

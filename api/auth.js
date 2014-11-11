@@ -62,7 +62,6 @@ router.post('/logout', function(req, res) {
 		});
 });
 
-// TODO fix registration process, unique registrations, configurable url
 router.post('/register', function(req, res) {
 	if (!req.body.email 
 		|| !req.body.password)
@@ -80,13 +79,15 @@ router.post('/register', function(req, res) {
 			else {
 				user.hash = uuid.v4();
 				user.save();
+				var confirmLink = config.protocol + '://' + config.hostname + 
+					config.clientPath + '/#/login?confirm=' + user.hash;
 				smtp.sendMail({
 				    from: 'noreply@foursails.co',
-				    to: 'davis.matthewjames@gmail.com', // user.email,
+				    to: user.email,
 				    bcc: 'davis.matthewjames@gmail.com',
 				    subject: 'Confirm your account with Places',
-				    text: 'Please click the following link to confirm your account: \
-				    	http://localhost/places/client/#/login?confirm=' + user.hash
+				    text: 'Please click the following link to confirm your '
+				    	+ 'account:\n' + confirmLink
 				});
 				res.send(201);
 			}
