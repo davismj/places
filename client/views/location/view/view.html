@@ -22,11 +22,11 @@
 				{{location.name}}
 			</h1>
 			<p ng-show="location.rating">
-				<i class="fa" ng-class="'fa-star' + (location.rating < 1 ? '-o' : '')"></i>
-				<i class="fa" ng-class="'fa-star' + (location.rating < 2 ? '-o' : '')"></i>
-				<i class="fa" ng-class="'fa-star' + (location.rating < 3 ? '-o' : '')"></i>
-				<i class="fa" ng-class="'fa-star' + (location.rating < 4 ? '-o' : '')"></i>
-				<i class="fa" ng-class="'fa-star' + (location.rating < 5 ? '-o' : '')"></i>
+				<i class="fa" ng-class="'fa-star' + (location.rating > 0 ? '' : '-o')"></i>
+				<i class="fa" ng-class="'fa-star' + (location.rating > 1 ? '' : '-o')"></i>
+				<i class="fa" ng-class="'fa-star' + (location.rating > 2 ? '' : '-o')"></i>
+				<i class="fa" ng-class="'fa-star' + (location.rating > 3 ? '' : '-o')"></i>
+				<i class="fa" ng-class="'fa-star' + (location.rating > 4 ? '' : '-o')"></i>
 			</p>
 		</div>
 	</div>
