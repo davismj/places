@@ -17,12 +17,15 @@ angular.module('placesApp')
 				if (auth.id) {
 
 					// remove this user's review if present and attach it to the user and the page
-					var visit = _.remove(reviews, { user: auth.id })[0];
+					var visit = _.remove(reviews, function(visit) {
+						return visit.user == auth.id
+							&& (new Date() - new Date(visit.timestamp)) < 3600000;
+					})[0];
 					if (visit) {
 						$scope.visit.rating = visit.rating;
 						$scope.visit.body = visit.body;
 						$scope.checkedin = true;
-						$scope.editingReview = visit.rating && visit.body;
+						$scope.editingReview = true;
 						auth.visits[$stateParams.id] = visit;
 					}
 				}
@@ -38,7 +41,7 @@ angular.module('placesApp')
 		// visit 
 		$scope.visit = auth.visits[$stateParams.id];
 		$scope.checkedin = !!$scope.visit;
-		$scope.editingReview = !$scope.visit;
+		$scope.editingReview = true; // !$scope.visit || !$scope.visit.body;
 		$scope.visit = $scope.visit || {
 			body: null,
 			rating: null
