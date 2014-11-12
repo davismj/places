@@ -14,20 +14,21 @@
 	<body ng-controller="mainCtrl">
 		<div id="notification" class="bg-light-i"></div>
 		<header class="padded shadow-i bg-dark">
-			<div id="logo" class="icon bg-dark-i pull-left">
-				<a ui-sref="search">P</a>
+			<div id="logo" class="pull-left icon">
+				<a ui-sref="search">Places</a>
 			</div>
-			<div id="profile" class="icon bg-dark-i pull-right">
-				<a ng-hide="auth.loggedIn" ui-sref="auth">
-					<i class="fa fa-user"></i>
-				</a>
-				<a ng-show="auth.loggedIn" ui-sref="user">
-					<i class="fa fa-user"></i>
-				</a>
+			<div class="icon">
+				User
 			</div>
-			<form id="search" class="pull-center" ng-submit="search.search()">
-				<input class="full-width bg-dark" type="search" placeholder="search" ng-model="search.query.search" />
-			</form>
+			<div class="icon">
+				Login
+			</div>
+			<div class="icon">
+				Search
+			</div>
+			<div class="icon">
+				Map
+			</div>
 		</header>
 		<section ui-view class="bg-light"></section>
 		<a id="feedback" class="rotate" href="http://goo.gl/forms/QE2r6gQxIJ" target="_blank">
