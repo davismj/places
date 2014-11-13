@@ -10,7 +10,6 @@ angular.module('placesApp')
 			background: "url('img/user/{id}.png?') center/contain no-repeat"
 				.replace('{id}', auth.id)
 		}
-			
 
 		var uploadControl = document.getElementById('avatar-upload'),
 			imageType = /image\/[png|jpeg|jpg|gif|webp]/;
@@ -39,5 +38,12 @@ angular.module('placesApp')
 
 		$scope.updateUser = function() {
 			$scope.user.post();
+		};
+
+		$scope.logout = function() {
+			auth.logout()
+				.then(function() {
+					location.assign('#/');
+				});
 		};
     });

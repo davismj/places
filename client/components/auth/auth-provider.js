@@ -125,7 +125,7 @@ angular.module('auth', ['notify'])
 		//  * @returns {Promise} A promise for the result of the login call.
 		//  */
 		Auth.prototype.login = function(email, password) {
-			var dfd = $q.defer(),
+			var dfd = verify = $q.defer(),
 				auth = this;
 			$http
 				.post(auth.apiUri + 'login', {
@@ -154,6 +154,7 @@ angular.module('auth', ['notify'])
 				.success(function(response) {
 					auth.setUser(null);
 					dfd.resolve(response);
+					verify = $q.defer().reject();
 				})
 				.error(function(response,status) {
 					dfd.reject(response, status);

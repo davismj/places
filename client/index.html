@@ -13,25 +13,25 @@
 	</head>
 	<body ng-controller="mainCtrl">
 		<div id="notification" class="bg-light-i"></div>
-		<header class="padded shadow-i bg-dark">
-			<div id="logo" class="pull-left icon">
+		<header class="shadow-i bg-dark">
+			<div id="logo" class="padded-2x text-xl pull-left">
 				<a ui-sref="search">Places</a>
 			</div>
-			<div class="icon">
-				User
+			<div class="padded-2x text-xl pull-right" ng-hide="auth.loggedIn">
+				<a ui-sref="auth">Login</a>
 			</div>
-			<div class="icon">
-				Login
+			<div class="padded-2x icon pull-right" ng-show="auth.loggedIn">
+				<a ui-sref="user"><i class="fa fa-user"></i></a>
 			</div>
-			<div class="icon">
-				Search
+			<div class="padded-2x icon pull-right">
+				<i class="fa fa-search"></i>
 			</div>
-			<div class="icon">
-				Map
+			<div class="padded-2x icon pull-right selected">
+				<i class="fa fa-map-marker"></i>
 			</div>
 		</header>
 		<section ui-view class="bg-light"></section>
-		<a id="feedback" class="rotate" href="http://goo.gl/forms/QE2r6gQxIJ" target="_blank">
+		<a id="feedback" class="bg-dark rotate" href="http://goo.gl/forms/QE2r6gQxIJ" target="_blank">
 	 		Feedback
 	 	</a>
 	</body>
