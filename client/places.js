@@ -56,4 +56,7 @@
 	.controller('mainCtrl', function($scope, search, auth) {
 		$scope.search = search;
 		$scope.auth = auth;
+
+		$scope.mapVisible = true;
+		$scope.searchVisible = false;
 	});

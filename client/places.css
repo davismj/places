@@ -21,7 +21,15 @@ textarea {
 	padding: 2px 4px;
 	background: inherit;
 }
-input[type="search"],
+input[type="search"] {
+	font-size: inherit;
+	font-weight: inherit;
+	font-family: inherit;
+	color: inherit;
+	border: 1px solid;
+	border-color: rgba(64, 64, 64, 0.30);
+	border-radius: 4px;
+}
 input[type="text"],
 input[type="email"] {
 	font-size: inherit;
@@ -67,7 +75,7 @@ li + li {
 
 .row {
 	width: 100%;
-	padding: 8px 8px 0 8px;
+	padding: 8px 12px 0 12px;
 	display: block;
 }
 .row:after {
@@ -113,11 +121,15 @@ li + li {
 }
 
 .padded,
+input[type="search"],
+input[type="text"],
+input[type="email"],
+input[type="password"],
 .card {
-	padding: 4px;
+	padding: 4px 6px;
 }
 .padded-2x {
-	padding: 8px;
+	padding: 8px 12px;
 }
 .spaced {
 	margin-top: 4px;
@@ -220,17 +232,7 @@ body {
 }
 
 .map {
-	position: absolute;
-	top: 0;
-	height: 40%;
-	width: 100%;
-}
-
-.map + * {
-	position: absolute; 
-	top: 40%;
-	width: 100%;
-	bottom: 0;
+	height: 200px
 }
 
 .input-group {
@@ -265,6 +267,7 @@ body {
 	content: "";
 	/*background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,1) 100%);*/
 }
+
 header {
 	height: 38px;
 	width: 100%;
@@ -282,12 +285,12 @@ header {
 /* fixes for oversized magnifying glass */
 .fa-search {
 	font-size: .90em!important;
-	padding-top: 1px!important;
+	margin-left: -4px!important;
 }
 
 body > section { 
 	position: absolute;
-	top: 38px;
+	top: 76px;
 	bottom: 0;
 	width: 100%;
 	overflow-y: auto;
@@ -311,18 +314,35 @@ body > section {
 
 #feedback {
 	position: fixed;
-	top: 81px;
+	top: 150px;
 	right: -43px;
 	font-size: 24px;
 	font-weight: bolder;
 	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
 	padding: 0 8px;
+}
+
+#search-bar {
+	transition: 0.5s ease-out;
+	-webkit-transition: 0.5s ease-out;
+}
+#search-bar.collapsed {
+	height: 0;
+}
+#search-bar.collapsed + [ui-view] {
+	top: 38px;
 }
 
 .collapse {
 	position: relative;
     -webkit-animation: collapse 0.5s;
     animation: collapse 0.5s;
+}
+
+.animated {
+	transition: 0.5s;
+	-webkit-transition: 0.5s;
 }
 
 @-webkit-keyframes collapse {

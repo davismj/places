@@ -1,8 +1,22 @@
-<!-- <form ng-submit="search()">
-	<input type="seach" placeholder="Search by place name" ng-model="searchText" />
-</form> -->
-<div id="search-map" class="map"></div>
-<ul class="scroll padded-2x">
+<style scoped>
+	.hideMap #search-map {
+		height: 0;
+	}
+
+	.map + * {
+		position: absolute; 
+		top: 200px;
+		width: 100%;
+		bottom: 0;
+	}
+
+	.hideMap .map + * {
+		top: 0;
+	}
+</style>
+
+<div id="search-map" class="map animated"></div>
+<ul class="scroll padded-2x animated">
 
 	<!-- locations list -->	
 	<li class="card" ng-repeat="location in search.results">

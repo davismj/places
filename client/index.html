@@ -13,7 +13,7 @@
 	</head>
 	<body ng-controller="mainCtrl">
 		<div id="notification" class="bg-light-i"></div>
-		<header class="shadow-i bg-dark">
+		<header class="bg-dark">
 			<div id="logo" class="padded-2x text-xl pull-left">
 				<a ui-sref="search">Places</a>
 			</div>
@@ -23,14 +23,19 @@
 			<div class="padded-2x icon pull-right" ng-show="auth.loggedIn">
 				<a ui-sref="user"><i class="fa fa-user"></i></a>
 			</div>
-			<div class="padded-2x icon pull-right">
+			<div class="padded-2x icon pull-right" ng-class="{ selected: searchVisible }" ng-click="searchVisible = !searchVisible">
 				<i class="fa fa-search"></i>
 			</div>
-			<div class="padded-2x icon pull-right selected">
+			<div class="padded-2x icon pull-right" ng-class="{ selected: mapVisible }" ng-click="mapVisible = !mapVisible">
 				<i class="fa fa-map-marker"></i>
 			</div>
 		</header>
-		<section ui-view class="bg-light"></section>
+		<header class="bg-light animated" id="search-bar" ng-class="{ collapsed: !searchVisible }">
+			<form class="padded" ng-submit="search()">
+				<input class="full-width" type="search" placeholder="Search by place name" ng-model="searchText" />
+			</form>
+		</header>
+		<section ui-view class="bg-light animated" ng-class="{ hideMap: mapVisible == false }"></section>
 		<a id="feedback" class="bg-dark rotate" href="http://goo.gl/forms/QE2r6gQxIJ" target="_blank">
 	 		Feedback
 	 	</a>
