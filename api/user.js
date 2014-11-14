@@ -45,11 +45,11 @@ router.post('/:id/image', function(req, res) {
 			res.send(403);
 
 		var form = new formidable.IncomingForm();
-		form.uploadDir = '.';
+		form.uploadDir = '../client/img/user/';
 		form.on('fileBegin', function(name, file) { 
 
 			// TODO: not force the ext?
-			file.path = '../client/img/user/' + id + '.png'; 
+			file.path = id + '.png'; 
 		})
 	    form.parse(req)
 	    res.send(200);
