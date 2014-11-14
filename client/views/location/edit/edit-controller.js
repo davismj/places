@@ -53,8 +53,8 @@ angular.module('placesApp')
 					}
 				);
 
-			function success() {
-				location.assign('#/search');
+			function success(loc) {
+				location.assign('#/place/' + loc[0]._id + '/view');
 			}
 		};
 		$scope.cancel = function() {
