@@ -8,15 +8,36 @@ angular.module('placesApp')
 		});
 
     	// initialize leaflet
-    	var	map = new L.map('search-map', {
-			layers: [
-	    		new L.TileLayer(
-	    			config.layer, 
-	    			config.layerOptions
-    			)
-    		]
-		}), 
+    	var	locate = L.Control.extend({
+			    options: {
+			        position: 'bottomleft'
+			    },
+
+			    onAdd: function (map) {
+			    	var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+			        container.innerHTML = '<a class="fa fa-crosshairs text-lg" href="#" title="Geolocate"></a>';
+			        container.childNodes[0].addEventListener('click', function() {
+						map.locate({
+							setView: true,
+							maximumAge: 15000,
+							locationTimeout: 30000,
+							enableHighAccuracy: true
+						});
+			        });
+			        return container;
+			    }
+			}),
+			map = new L.map('search-map', {
+				layers: [
+		    		new L.TileLayer(
+		    			config.layer, 
+		    			config.layerOptions
+	    			)
+	    		]
+			}), 
 			markers = {};
+
+		map.addControl(new locate());
 
 		map.on('locationfound', function (loc) {
 			search.query.lat = loc.latitude;
@@ -39,7 +60,8 @@ angular.module('placesApp')
 		if (!search.query.lat || !search.query.lon)
 			map.locate({
 				setView: true,
-				maximumAge: 15000,
+				maximumAge: 0,
+				locationTimeout: 10000,
 				enableHighAccuracy: true
 			});
 		else
